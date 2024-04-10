@@ -22,3 +22,13 @@ Ejecutamos las migraciones
  ```bash
     php artisan make:model Categoria
 ```
+
+## Crear un Seeder
+```bash
+    php artisan make:seeder CategoriaSeeder
+```
+
+ ```bash
+    php artisan migrate --seed
+    php artisan migrate:refresh --seed
+```
