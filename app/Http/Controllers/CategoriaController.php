@@ -10,9 +10,12 @@ class CategoriaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        //dd($request);
+        $texto=trim($request->get('texto'));
+        $registros=Categoria::where('nombre', 'like', '%' . $texto . '%')->paginate(10);
+        return view('categoria.index',compact('registros','texto'));
     }
 
     /**
@@ -20,7 +23,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('categoria.create');
     }
 
     /**
@@ -28,7 +31,11 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $registro = new Categoria;
+        $registro->nombre=$request->input('nombre');
+        $registro->imagen="";
+        $registro->save();
+        return redirect()->route('categoria.index');
     }
 
     /**
@@ -36,7 +43,7 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        //
+        return "Mostrar";
     }
 
     /**
