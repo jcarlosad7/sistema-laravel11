@@ -226,6 +226,7 @@
   <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('assets/js/sweetalert2@11.js')}}"></script>
   <script src="{{asset('assets/scripts/categorias.js')}}"></script>
+  @stack('scripts')
   <!-- scripts de cada plantilla -->
   <!--Fin Scripts -->
 </body>

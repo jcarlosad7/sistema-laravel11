@@ -23,7 +23,8 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        return view('categoria.create');
+        $categoria= new Categoria();
+        return view('categoria.action',['categoria'=>new Categoria()]);
     }
 
     /**
@@ -49,9 +50,10 @@ class CategoriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Categoria $categoria)
+    public function edit($id)
     {
-        //
+        $categoria=Categoria::findOrFail($id);
+        return view('categoria.action',compact('categoria'));
     }
 
     /**
