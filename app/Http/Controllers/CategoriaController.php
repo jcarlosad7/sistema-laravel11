@@ -83,9 +83,9 @@ class CategoriaController extends Controller
         $registro = Categoria::findOrFail($id);
         $registro->delete();
 
-    return response()->json([
-        'status' => 'success',
-        'message' => $registro->nombre . ' Eliminado'
-    ]);
+        return response()->json([
+            'status' => 'success',
+            'message' => $registro->nombre . ' Eliminado'
+        ]);
     }
 }
