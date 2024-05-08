@@ -36,7 +36,10 @@ class CategoriaController extends Controller
         $registro->nombre=$request->input('nombre');
         $registro->imagen="";
         $registro->save();
-        return redirect()->route('categoria.index');
+        return response()->json([
+            'status'=> 'success',
+            'message'=>'Registro creado satisfactoriamente'
+        ]);
     }
 
     /**

@@ -99,5 +99,43 @@
             }
           });
     }
+    function guardar(){
+        $('#formUpdate').on('submit',function(e){
+          e.preventDefault();
+          const _form= this;
+          const formData=new FormData(_form);
+          const url= this.getAttribute('action');
+          $.ajax({
+            method: 'POST',
+            url,
+            headers:{
+              'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            },
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(res){
+              $('#modal-update').modal("hide");
+              Swal.fire({
+                  icon: res.status,
+                  title: res.message,
+                  showConfirmButton: false,
+                  timer: 1500
+              });
+            },
+            error: function (res){
+              let errors = res.responseJSON?.errors;
+              $(_form).find(`[name]`).removeClass('is-invalid');
+              $(_form).find('.invalid-feedback').remove();
+              if(errors){
+                for(const [key, value] of Object.entries(errors)){
+                    $(_form).find(`[name='${key}']`).addClass('is-invalid')
+                    $(_form).find(`#msg_${key}`).parent().append(`<span class="invalid-feedback">${value}</span>`);
+                }
+              }
+            }
+          });
+        })
+    }
   </script>
 @endpush
