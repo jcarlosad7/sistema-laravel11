@@ -62,9 +62,16 @@ class CategoriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, $id)
     {
-        //
+        $categoria=Categoria::findOrFail($id);
+        $categoria->nombre=$request->nombre;
+        $categoria->save();
+
+        return response()->json([
+            'status'=> 'success',
+            'message'=> 'Actualización de datos satisfactoria'
+        ]);
     }
 
     /**
