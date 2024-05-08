@@ -41,7 +41,7 @@
                               <button type="button" class="btn btn-warning btn-sm editar" onclick="editar({{$reg->id}})">
                                 <i class="fas fa-edit"></i>
                               </button>
-                              <button type="button" class="btn btn-danger btn-sm eliminar">
+                              <button type="button" class="btn btn-danger btn-sm eliminar" onclick="eliminar({{$reg->id}})">
                                 <i class="fas fa-trash"></i>
                               </button>
                             </td>
@@ -115,6 +115,7 @@
             processData: false,
             contentType: false,
             success: function(res){
+              window.location.reload();
               $('#modal-update').modal("hide");
               Swal.fire({
                   icon: res.status,
@@ -137,5 +138,40 @@
           });
         })
     }
+    function eliminar(id) {
+      Swal.fire({
+            title: 'Eliminar registro',
+            text: "¿Esta seguro de querer eliminar el registro?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si',
+            cancelButtonText: 'No'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                $.ajax({
+                    method: 'DELETE',
+                    url: `{{url('categoria')}}/${id}`,
+                    headers:{
+                      'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(res){
+                      window.location.reload();
+                      Swal.fire({
+                          icon: res.status,
+                          title: res.message,
+                          showConfirmButton: false,
+                          timer: 1500
+                      });
+                    },
+                    error: function (res){
+
+                    }
+                });
+              }
+          })
+        
+      }
   </script>
 @endpush

@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sistema - Plantilla</title>
   <meta name="robots" content="noindex">
@@ -225,7 +226,6 @@
   <script src="{{asset('assets/js/adminlte.min.js')}}"></script>
   <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('assets/js/sweetalert2@11.js')}}"></script>
-  <script src="{{asset('assets/scripts/categorias.js')}}"></script>
   @stack('scripts')
   <!-- scripts de cada plantilla -->
   <!--Fin Scripts -->

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoriaRequest;
 
 class CategoriaController extends Controller
 {
@@ -30,7 +31,7 @@ class CategoriaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoriaRequest $request)
     {
         $registro = new Categoria;
         $registro->nombre=$request->input('nombre');
@@ -62,7 +63,7 @@ class CategoriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(CategoriaRequest $request, $id)
     {
         $categoria=Categoria::findOrFail($id);
         $categoria->nombre=$request->nombre;
@@ -77,8 +78,14 @@ class CategoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categoria $categoria)
+    public function destroy($id)
     {
-        //
+        $registro = Categoria::findOrFail($id);
+        $registro->delete();
+
+    return response()->json([
+        'status' => 'success',
+        'message' => $registro->nombre . ' Eliminado'
+    ]);
     }
 }
