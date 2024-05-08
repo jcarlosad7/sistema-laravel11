@@ -15,7 +15,7 @@
         @csrf
         <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Ingrese nombre" value="{{$categoria->nombre}}">
+            <input type="text" name="nombre" required class="form-control" id="nombre" placeholder="Ingrese nombre" value="{{$categoria->nombre}}">
         </div>
             <div class="form-group">
             <button type="submit" class="btn btn-primary" id="guardar"><span id="textoBoton">Guardar</span></button>
