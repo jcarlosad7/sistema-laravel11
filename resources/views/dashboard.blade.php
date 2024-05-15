@@ -1,17 +1,29 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+@extends('admin.main')
+@section('contenido')
+ <!--CONTENIDO-->
+      <!-- TABLA -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- /.col-md-6 -->
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="m-0">Dashboard</h5>
                 </div>
+                <div class="card-body">
+                        Escritorio
+                </div>
+              </div>
             </div>
-        </div>
-    </div>
-</x-app-layout>
+            <!-- /.col-md-6 -->
+          </div>
+          <!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- FIN TABLA -->
+<!--FIN CONTENIDO-->
+@endsection
+@push('scripts')
+
+@endpush

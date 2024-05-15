@@ -12,7 +12,10 @@ Route::get('admin', function () {
     return view('admin.contenido');
 });
 
-Route::resource('categoria', CategoriaController::class);
+Route::middleware('auth')->group(function () {
+    Route::resource('categoria', CategoriaController::class);
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
